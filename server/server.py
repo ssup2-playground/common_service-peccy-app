@@ -1,18 +1,21 @@
 import socket
 from flask import Flask, jsonify
+from flask_cors import CORS
 from domain.entity.hobby import Hobby
 from domain.service.hobby import HobbyService
 
+# Init Server
 server = Flask(__name__)
+CORS(server)
 
 
 # Meta
-@server.route("/")
+@server.route("/meta/name")
 def get_app_name():
     return "My app server"
 
 
-@server.route("/hostname")
+@server.route("/meta/hostname")
 def get_hostname():
     return socket.gethostname()
 
@@ -42,6 +45,7 @@ def get_hobby(hobby_id):
 def delete_hobby(hobby_id):
     HobbyService().delete_hobby(hobby_id)
     return jsonify({})
+
 
 # Run
 def run():
