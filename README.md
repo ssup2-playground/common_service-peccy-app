@@ -1,1 +1,1 @@
-# eks-cicd-dr_my-app
+# eks-cicd-dr_peccy-app
