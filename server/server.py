@@ -1,6 +1,8 @@
 import socket
+
 from flask import Flask, jsonify, send_file
 from flask_cors import CORS
+
 from domain.entity.hobby import Hobby
 from domain.service.hobby import HobbyService
 
@@ -46,6 +48,10 @@ def delete_hobby(hobby_id):
     HobbyService().delete_hobby(hobby_id)
     return jsonify({})
 
+# Health
+@server.route("/healthz")
+def get_healthz():
+    return '{"status":"UP"}'
 
 # Debug
 @server.route("/debugs/hostname")
