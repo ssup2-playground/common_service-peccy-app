@@ -1,16 +1,27 @@
 from typing import List
-from domain.entity.hobby import Hobby
+
+from domain.repo import engine
+from domain.entity import ModelBase
+from domain.entity.hobby import HobbyEntity
+from sqlalchemy.orm import Session
 
 
 class HobbyRepository:
-    def list(self) -> List[Hobby]:
-        return [Hobby(0, "zero"), Hobby(1, "one")]
+    def __init__(self) -> None:
+        ModelBase.metadata.create_all(bind=engine)
+        return
 
-    def create(self, hobby: Hobby) -> Hobby:
-        return Hobby(0, hobby.name)
+    def list(self, db: Session) -> List[HobbyEntity]:
+        return db.query(HobbyEntity).all()
 
-    def read(self, hobby_id: int) -> Hobby:
-        return Hobby(hobby_id, "get")
+    def create(self, db: Session, hobby: HobbyEntity) -> None:
+        db.add(hobby)
+        return
 
-    def delete(self, hobby_id: int) -> bool:
-        return True
+    def read(self, db: Session, hobby_id: int) -> HobbyEntity:
+        return db.query(HobbyEntity).get(hobby_id)
+
+    def delete(self, db: Session, hobby_id: int) -> None:
+        hobby = db.query(HobbyEntity).get(hobby_id)
+        db.delete(hobby)
+        return

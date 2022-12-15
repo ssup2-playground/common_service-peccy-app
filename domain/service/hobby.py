@@ -1,17 +1,32 @@
 from typing import List
-from domain.entity.hobby import Hobby
+from sqlalchemy.orm import Session
+
 from domain.repo.hobby import HobbyRepository
+from domain.entity.hobby import HobbyEntity
 
 
 class HobbyService:
-    def list_hobbies(self) -> List[Hobby]:
-        return HobbyRepository().list()
+    def __init__(self) -> None:
+        self.repo = HobbyRepository()
+        return
 
-    def get_hobby(self, hobby_id: int) -> Hobby:
-        return HobbyRepository().read(hobby_id)
+    def list_hobbies(self, db: Session) -> List[HobbyEntity]:
+        return self.repo.list(db)
 
-    def create_hobby(self, hobby: Hobby) -> Hobby:
-        return HobbyRepository().create(hobby)
+    def get_hobby(self, db: Session, hobby_id: int) -> HobbyEntity:
+        db.begin()
+        hobby = self.repo.read(db, hobby_id)
+        db.commit()
+        return hobby
 
-    def delete_hobby(self, hobby_id: int) -> bool:
-        return HobbyRepository().delete(hobby_id)
+    def create_hobby(self, db: Session, hobby: HobbyEntity) -> HobbyEntity:
+        db.begin()
+        self.repo.create(db, hobby)
+        db.commit()
+        return hobby
+
+    def delete_hobby(self, db: Session, hobby_id: int) -> None:
+        db.begin()
+        self.repo.delete(db, hobby_id)
+        db.commit()
+        return
