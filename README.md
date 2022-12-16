@@ -2,6 +2,19 @@
 
 Peccy service app server.
 
+## CLI Commands
+
+```
+# Install packages
+$ pip3 install -r requirements.txt
+
+# Local run
+$ python3 run.py
+
+# Unit test
+$ python3 -m unittest
+```
+
 ## Main Packages
 
 * API Framework : FastAPI
