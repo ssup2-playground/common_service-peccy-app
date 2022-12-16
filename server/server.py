@@ -31,7 +31,7 @@ service_hobby = HobbyService()
 ## Info
 @server.get("/infos/name")
 def get_info_name() -> dict[str, str]:
-    return {"name": "peccy"}
+    return {"name": "peccy v0.1.0"}
 
 
 @server.put("/infos/picture")
