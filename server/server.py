@@ -1,7 +1,7 @@
 from typing import List
 import socket
 
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, UploadFile, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from starlette.responses import Response
@@ -32,6 +32,14 @@ service_hobby = HobbyService()
 @server.get("/infos/name")
 def get_info_name() -> dict[str, str]:
     return {"name": "peccy"}
+
+
+@server.put("/infos/picture")
+def post_info_piecture(file: UploadFile) -> dict[str, str]:
+    picture = file.file.read()
+    with open("assets/peccy.png", "wb") as f:
+        f.write(picture)
+    return {"result": "ok"}
 
 
 @server.get("/infos/picture")
