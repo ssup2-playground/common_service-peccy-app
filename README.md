@@ -30,3 +30,4 @@ $ python3 -m unittest
 * CORS : https://fastapi.tiangolo.com/tutorial/cors/
 * Logging : https://pawamoy.github.io/posts/unify-logging-for-a-gunicorn-uvicorn-app/#uvicorn-only-version
 * FastAPI : https://blog.neonkid.xyz/253
+* Pool Pre Ping : https://stackoverflow.com/questions/23747742/sqlalchemy-session-reconnect

@@ -10,7 +10,7 @@ db_port = os.environ.get("MYSQL_PORT", "3306")
 db_name = os.environ.get("MYSQL_DB_NAME", "peccy")
 
 engine = create_engine(
-    f"mysql+mysqldb://{db_username}:{db_password}@{db_host}:{db_port}/{db_name}"
+    f"mysql+mysqldb://{db_username}:{db_password}@{db_host}:{db_port}/{db_name}", pool_pre_ping=True
 )
 
 db_session = scoped_session(
