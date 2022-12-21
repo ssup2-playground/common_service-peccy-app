@@ -9,4 +9,4 @@ class DebugService:
         return {"region": os.environ.get("AWS_REGION", "Local")}
 
     def read_version(self) -> dict[str, str]:
-        return {"version": "v0.1.1"}
+        return {"version": "v0.1.2"}
