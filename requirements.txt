@@ -1,6 +1,7 @@
 fastapi==0.88.0
 pydantic==1.10.2
 SQLAlchemy==1.4.45
+sqlalchemy_utils==0.40.0
 starlette==0.22.0
 uvicorn==0.20.0
 mysqlclient==2.1.1
