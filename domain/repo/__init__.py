@@ -1,14 +1,16 @@
-import os
+import yaml
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy_utils import database_exists, create_database
 
-db_username = os.environ.get("MYSQL_USER", "root")
-db_password = os.environ.get("MYSQL_PASSWORD", "root")
-db_host = os.environ.get("MYSQL_URL", "127.0.0.1")
-db_port = os.environ.get("MYSQL_PORT", "3306")
-db_name = os.environ.get("MYSQL_DB_NAME", "peccy")
+with open('config.yml', 'r', encoding="utf-8") as file:
+    config = yaml.safe_load(file)
+db_username = config["mysql_user"]
+db_password = config["mysql_password"]
+db_host = config["mysql_url"]
+db_port = config["mysql_port"]
+db_name = config["mysql_db_name"]
 
 engine = create_engine(
     f"mysql+mysqldb://{db_username}:{db_password}@{db_host}:{db_port}/{db_name}",

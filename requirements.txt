@@ -6,4 +6,5 @@ starlette==0.22.0
 uvicorn==0.20.0
 mysqlclient==2.1.1
 loguru==0.6.0
+pyyaml==6.0.1
 python-multipart==0.0.5
