@@ -21,7 +21,7 @@ jobs:
     - name: Prepare
       id: prepare
       run: |
-        DOCKER_IMAGE=ghcr.io/ssup2-playground/service-peccy-app
+        DOCKER_IMAGE=ghcr.io/ssup2-playground/common_service-peccy-app
         DOCKER_PLATFORMS=linux/amd64,linux/arm64
         VERSION=""
         if [[ $GITHUB_REF == refs/tags/* ]]; then
